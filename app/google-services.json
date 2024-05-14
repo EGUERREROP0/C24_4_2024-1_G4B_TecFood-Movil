@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "920246536455",
+    "project_id": "tecfood-ffeb4",
+    "storage_bucket": "tecfood-ffeb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920246536455:android:187c6a0140a4bf98ed1da2",
+        "android_client_info": {
+          "package_name": "com.guerrero.erminio.tecfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa6EzQsMFpw7oZTDsNPfbjRsPl4Zn-Z3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
