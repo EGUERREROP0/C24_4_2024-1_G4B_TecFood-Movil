@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/nav_item_main"
+            android:title="@string/start_menu"
+            android:icon="@android:drawable/ic_menu_agenda"
+            />
+
+        <item android:id="@+id/nav_item_record"
+            android:title="@string/record_menu"
+            android:icon="@android:drawable/star_on"
+            />
+
+    </group>
+    <!--- Seccion Cuenta con menu interno -->
+    <item android:title="@string/SubMenuCuenta">
+        <menu>
+            <item android:id="@+id/nav_item_restart"
+                android:title="@string/restart_menu"
+                android:icon="@android:drawable/ic_menu_manage"
+                />
+            <item android:id="@+id/nav_item_signOut"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+            <item android:id="@+id/nav_item_signOut1"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+            <item android:id="@+id/nav_item_signOut2"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+            <item android:id="@+id/nav_item_signOut4"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+            <item android:id="@+id/nav_item_signOut5"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+            <item android:id="@+id/nav_item_signOut6"
+                android:title="@string/signOut_menu"
+                android:icon="@android:drawable/ic_menu_delete"
+                />
+        </menu>
+    </item>
+</menu>

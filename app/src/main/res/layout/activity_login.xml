@@ -23,10 +23,10 @@
         android:gravity="center"
         android:paddingTop="20dp"
         android:text="@string/bienvenida"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/etEmail"
         style="@style/viewCustom"
         android:layout_marginTop="0dp"
@@ -35,10 +35,34 @@
         android:inputType="textEmailAddress"
         android:paddingTop="25dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white" />-->
 
-    <EditText
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/containerEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:hint="@string/email"
+        app:boxStrokeColor="@color/blueLight"
+        app:hintTextColor="@color/white"
+        app:passwordToggleTint="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <EditText
+            android:id="@+id/etEmail"
+            style="@style/viewCustom"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@color/white"
+            android:inputType="textEmailAddress"
+            android:paddingTop="25dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+   <!-- <EditText
+        android:id="@+id/etPassword1"
         style="@style/viewCustom"
         android:layout_marginTop="0dp"
         android:backgroundTint="@color/white"
@@ -46,7 +70,33 @@
         android:inputType="textPassword"
         android:paddingTop="30dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRepitPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:hint="@string/password"
+
+        app:boxStrokeColor="@color/blueLight"
+        app:hintTextColor="@color/white"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/viewCustom"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@color/white"
+            android:inputType="textPassword"
+            android:paddingTop="30dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/btnLogin"
@@ -56,11 +106,12 @@
         android:onClick="login"
         android:paddingTop="7dp"
         android:paddingBottom="7dp"
+        android:backgroundTint="@color/blueLight"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvforgotPassword"
@@ -101,6 +152,7 @@
         android:id="@+id/btnSignGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_login"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/white"
@@ -110,4 +162,5 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp" />
+
 </LinearLayout>

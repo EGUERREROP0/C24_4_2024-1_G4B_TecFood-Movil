@@ -5,4 +5,13 @@
         <item  name="android:layout_height">wrap_content</item>
         <item  name="android:layout_margin">8dp</item>
     </style>
+
+
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+    <style name="outlinedTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/blueLight</item>
+        <item name="hintTextColor">@color/blueLight</item>
+        <item name="android:textColorHint">@color/blueLight</item>
+    </style>
 </resources>
+

@@ -5,4 +5,5 @@
     <color name="gray">#151518</color>
     <color name="blueLight">#00AEEF</color>
     <color name="salmon">#EF7510</color>
+    <color name="blueLightDesabled">#6ABFDF</color>
 </resources>
