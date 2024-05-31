@@ -6,11 +6,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,9 +20,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.guerrero.erminio.tecfood.LoginActivity.Companion.useremail
+import com.guerrero.erminio.tecfood.databinding.ActivityLoginBinding
+import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+
     private lateinit var drawer: DrawerLayout
+    //Implememntacion de viewBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +38,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         initNavigationView()
 
     }
+
     // Function to initialize the toolbar
     private fun initToolbar(){
         //enableEdgeToEdge()
             val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
             setSupportActionBar(toolbar)
 
+        //Variables globales
         drawer = findViewById(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.bar_title,
@@ -70,22 +79,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+
     }
 
     // dar vida al menu
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.nav_item_record -> histories()
-            R.id.nav_item_signOut -> callSignOut()
-        }
-        //Volver el menu a su estado original
-        drawer.closeDrawer(GravityCompat.START)
+       when(item.itemId){
+           R.id.nav_item_signOut -> {
+              signOut()
+           }
+           R.id.nav_item_record -> {
+              histories()
+           }
 
+       }
+        drawer.closeDrawer(GravityCompat.START)
         return true
     }
-
     private fun histories(){
-        val intent = Intent(this, ForgotPasswordActivity::class.java)
+        val intent = Intent(this, TermsActivity::class.java)
         startActivity(intent)
     }
 

@@ -13,5 +13,7 @@
         <item name="hintTextColor">@color/blueLight</item>
         <item name="android:textColorHint">@color/blueLight</item>
     </style>
+
+
 </resources>
 

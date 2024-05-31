@@ -17,7 +17,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
+
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -38,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
     //Variable para Auth whit DDBB
     private lateinit var mAuth: FirebaseAuth
-
+   // private val RESULT_CODE_GOOGLE_IN = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -188,4 +193,55 @@ class LoginActivity : AppCompatActivity() {
            }
         else Toast.makeText(this, "Por favor ingrese un correo", Toast.LENGTH_SHORT).show()
     }
+
+
+    /*
+
+    //Function to sign in with Google
+    fun callSignGoogle(view: View){
+        signGoogle()
+    }
+
+    private fun signGoogle(){
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        var googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+
+
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RESULT_CODE_GOOGLE_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == RESULT_CODE_GOOGLE_IN){
+
+            try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                val account = task.getResult(ApiException::class.java)!!
+
+                if(account != null) {
+                    email = account.email!!
+                    val credencial = GoogleAuthProvider.getCredential(account.idToken, null)
+
+                    mAuth.signInWithCredential(credencial).addOnCompleteListener { task ->
+                        if (task.isSuccessful) goHome(email, "google")
+                        else Toast.makeText(
+                            this,
+                            "Error al iniciar sesion con Google",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error al iniciar sesion con Google", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }*/
 }

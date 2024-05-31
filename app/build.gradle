@@ -21,11 +21,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+  
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {
@@ -34,6 +35,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -44,12 +48,18 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.activity
     implementation libs.androidx.constraintlayout
+    implementation libs.androidx.navigation.fragment
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
 
     // Import the Firebase BoM --Dependencies google services
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+   // implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -60,5 +70,18 @@ dependencies {
     //implementation 'com.google.firebase:firebase-database:23.0.0'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-firestore:25.0.0'
+
+
+    //Tarjetas
+    implementation 'com.google.android.material:material:1.4.0'
+
+
+    //Icons
+    implementation 'com.google.android.material:material:1.4.0'
+
+
+
+
+
 }
 

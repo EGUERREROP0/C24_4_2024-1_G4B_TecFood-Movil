@@ -23,7 +23,7 @@
         android:gravity="center"
         android:paddingTop="20dp"
         android:text="@string/bienvenida"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
     <!--<EditText
@@ -161,6 +161,8 @@
         android:text="@string/google"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:onClick="callSignGoogle"
+            />
 
 </LinearLayout>
