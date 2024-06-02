@@ -1,37 +1,38 @@
-package com.guerrero.erminio.tecfood
+package com.guerrero.erminio.tecfood.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.guerrero.erminio.tecfood.LoginActivity
 import com.guerrero.erminio.tecfood.LoginActivity.Companion.useremail
-import com.guerrero.erminio.tecfood.databinding.ActivityLoginBinding
+import com.guerrero.erminio.tecfood.R
+import com.guerrero.erminio.tecfood.TermsActivity
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
+import com.guerrero.erminio.tecfood.ui.search.DishListActivity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
+    private  lateinit var  navController: NavController
     private lateinit var drawer: DrawerLayout
     //Implememntacion de viewBinding
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         //Toast.makeText(this, "Welcome to TecFood $useremail", Toast.LENGTH_SHORT).show()
 
         initToolbar()
@@ -49,7 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer = findViewById(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.bar_title,
-                R.string.navigation_drawer_close)
+            R.string.navigation_drawer_close
+        )
 
         drawer.addDrawerListener(toggle)
         toggle.syncState()
@@ -91,6 +93,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
            R.id.nav_item_record -> {
               histories()
            }
+           R.id.nav_item_searchDish -> {
+               searchDish()
+           }
 
        }
         drawer.closeDrawer(GravityCompat.START)
@@ -100,5 +105,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = Intent(this, TermsActivity::class.java)
         startActivity(intent)
     }
+
+    private fun searchDish(){
+        val intent = Intent(this, DishListActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*private fun initUI(){
+        initNavigation()
+    }
+
+    //Agregando framentes -- al main Activity
+    private fun initNavigation(){
+        val navHost: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
+
+        navController = navHost.navController
+        binding.bnView.setupWithNavController(navController)
+
+    }*/
+
 
 }

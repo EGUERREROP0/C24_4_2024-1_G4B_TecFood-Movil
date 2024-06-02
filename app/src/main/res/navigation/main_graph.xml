@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_graph"
+        app:startDestination="@id/allFragment">
+
+    <fragment
+            android:id="@+id/allFragment"
+            android:name="com.guerrero.erminio.tecfood.ui.all.AllFragment"
+            android:label="fragment_all"
+            tools:layout="@layout/fragment_all" />
+    <fragment
+            android:id="@+id/orderFragment"
+            android:name="com.guerrero.erminio.tecfood.ui.orders.OrderFragment"
+            android:label="fragment_order"
+            tools:layout="@layout/fragment_order" />
+    <fragment
+            android:id="@+id/searchFragment"
+            android:name="com.guerrero.erminio.tecfood.ui.search.SearchFragment"
+            android:label="fragment_search"
+            tools:layout="@layout/fragment_search" />
+</navigation>

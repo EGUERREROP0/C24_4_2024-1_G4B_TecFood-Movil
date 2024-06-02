@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,12 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.TECFOOD"
             tools:targetApi="31">
-
+        <activity
+                android:name=".ui.search.DishListActivity"
+                android:exported="false" />
         <activity
                 android:name=".SplashActivity"
                 android:exported="true"
                 android:screenOrientation="unspecified">
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,14 +30,17 @@
                 android:name=".LoginActivity"
                 android:exported="true"
                 android:screenOrientation="unspecified">
-            <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name=".ui.home.MainActivity"
                 android:exported="true">
 
             <!--

@@ -22,6 +22,12 @@
                 android:title="@string/restart_menu"
                 android:icon="@android:drawable/ic_menu_manage"
                 />
+
+            <item android:id="@+id/nav_item_searchDish"
+                    android:title="@string/buscar_plato"
+                    android:icon="@android:drawable/ic_menu_search"
+                    />
+
             <item android:id="@+id/nav_item_signOut"
                 android:title="@string/signOut_menu"
                 android:icon="@android:drawable/ic_menu_close_clear_cancel"

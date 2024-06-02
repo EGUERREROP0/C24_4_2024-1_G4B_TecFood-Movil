@@ -6,4 +6,8 @@
     <color name="blueLight">#00AEEF</color>
     <color name="salmon">#EF7510</color>
     <color name="blueLightDesabled">#6ABFDF</color>
+    <color name="red">#911528</color>
+
+    <color name="nameDish">#9E0B0708</color>
+
 </resources>

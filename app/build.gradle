@@ -83,6 +83,15 @@ dependencies {
     implementation 'com.github.rommansabbir:AnimationX:2.0'
 
 
+    //Navegacion entre fragments
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.1"
+
+    //Otras dependencias retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    //Piccasso para imagenes
+    implementation 'com.squareup.picasso:picasso:2.8'
 
 
 }

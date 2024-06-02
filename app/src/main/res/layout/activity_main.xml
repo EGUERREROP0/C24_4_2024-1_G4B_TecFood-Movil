@@ -7,11 +7,12 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.home.MainActivity"
     tools:openDrawer="start"
     >
 
     <include
+        android:id="@+id/app_bar_toolbar"
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +24,38 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/activity_main_drawer" />
+
+
+
+    <!-- Mostrar Fragments -->
+   <!-- <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:navGraph="@navigation/main_graph"
+            app:defaultNavHost="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+    />
+
+   <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNavView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:itemActiveIndicatorStyle="@null"
+    app:menu="@menu/botton_menu"
+
+/>-->
+
+
+
+
 
 
 
