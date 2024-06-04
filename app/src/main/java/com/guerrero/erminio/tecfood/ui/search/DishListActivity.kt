@@ -2,6 +2,7 @@ package com.guerrero.erminio.tecfood.ui.search
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -66,13 +67,12 @@ class DishListActivity : AppCompatActivity() {
                 .getDish(query)
 
             if (myResponse.isSuccessful) {
-                Log.i("Response", "Funciona")
+                Log.i("Response", "verified")
 
                 val response: ResponseDish? = myResponse.body()
                 if (response != null) {
                     Log.i("Response", response.toString())
 
-                    //Borrar progresBar- pero si le muestro directo me tumba la app
                     runOnUiThread {
                         binding.progressBar.isVisible = false
                         adapter.updateList(response.results)

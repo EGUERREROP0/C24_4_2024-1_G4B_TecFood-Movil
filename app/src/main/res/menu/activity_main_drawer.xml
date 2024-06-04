@@ -32,6 +32,11 @@
                 android:title="@string/signOut_menu"
                 android:icon="@android:drawable/ic_menu_close_clear_cancel"
                 />
+
+            <item android:id="@+id/nav_item_Main"
+                    android:title="Todo"
+                    android:icon="@android:drawable/ic_menu_agenda"
+                    />
         </menu>
     </item>
 </menu>

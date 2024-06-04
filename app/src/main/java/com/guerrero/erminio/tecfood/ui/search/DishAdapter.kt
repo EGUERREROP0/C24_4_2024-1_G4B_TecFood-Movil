@@ -15,6 +15,7 @@ class DishAdapter(var dishList: List<DishItemResponse> = emptyList()):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+
         //Retornamos valores de DishViewHolder y el item_dish
         return DishViewHolder(inflater.inflate(R.layout.item_dish, parent, false))
 

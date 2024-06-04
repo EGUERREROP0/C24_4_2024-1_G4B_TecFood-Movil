@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-            android:allowBackup="true"
-            android:dataExtractionRules="@xml/data_extraction_rules"
-            android:fullBackupContent="@xml/backup_rules"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.TECFOOD"
-            tools:targetApi="31">
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TECFOOD"
+        tools:targetApi="31" >
         <activity
-                android:name=".ui.search.DishListActivity"
-                android:exported="false" />
+            android:name=".ui.all.DishAllActivity"
+            android:exported="false" />
         <activity
-                android:name=".SplashActivity"
-                android:exported="true"
-                android:screenOrientation="unspecified">
+            android:name=".ui.search.DishListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="unspecified" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +31,9 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".LoginActivity"
-                android:exported="true"
-                android:screenOrientation="unspecified">
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:screenOrientation="unspecified" >
 
             <!--
             <intent-filter>
@@ -40,8 +44,8 @@
             -->
         </activity>
         <activity
-                android:name=".ui.home.MainActivity"
-                android:exported="true">
+            android:name=".ui.home.MainActivity"
+            android:exported="true" >
 
             <!--
             <intent-filter>
