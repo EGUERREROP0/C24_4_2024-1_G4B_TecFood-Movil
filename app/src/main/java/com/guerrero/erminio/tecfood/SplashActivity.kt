@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imvLogo.animationXAttention(Attention.ATTENTION_STAND_UP, 4000L)
+        binding.imvLogo.animationXAttention(Attention.ATTENTION_TA_DA , 4000L)
         runPostDelayed()
 
     }

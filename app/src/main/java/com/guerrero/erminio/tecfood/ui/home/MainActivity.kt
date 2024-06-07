@@ -11,18 +11,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.guerrero.erminio.tecfood.LoginActivity
 import com.guerrero.erminio.tecfood.LoginActivity.Companion.useremail
 import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.TermsActivity
-import com.guerrero.erminio.tecfood.ui.all.DishAllActivity
-import com.guerrero.erminio.tecfood.ui.search.DishListActivity
+import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
+
 import retrofit2.Retrofit
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener */ {
+
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
     private lateinit var drawer: DrawerLayout
@@ -32,20 +36,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var retrofit: Retrofit
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //Iniciando navegacion
+        initUI()
+
         //Toast.makeText(this, "Welcome to TecFood $useremail", Toast.LENGTH_SHORT).show()
 
-        initToolbar()
-        initNavigationView()
+        /*initToolbar()
+        initNavigationView()*/
 
     }
 
     // Function to initialize the toolbar
-    private fun initToolbar() {
+   /* private fun initToolbar() {
         //enableEdgeToEdge()
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -125,18 +132,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         startActivity(intent)
     }
 
-    /*private fun initUI(){
+    */
+
+
+
+
+
+    private fun initUI(){
         initNavigation()
     }
 
     //Agregando framentes -- al main Activity
     private fun initNavigation(){
-        val navHost: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
 
         navController = navHost.navController
-        binding.bnView.setupWithNavController(navController)
-
-    }*/
+        binding.bottomNavView.setupWithNavController(navController)
+    }
 
 
     //Extraendo todos los platos en el main activity

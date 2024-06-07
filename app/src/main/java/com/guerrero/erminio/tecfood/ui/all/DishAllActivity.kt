@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DishAllActivity : AppCompatActivity() {
+/*class DishAllActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDishallBinding
 
     private lateinit var retrofit: Retrofit
@@ -77,4 +77,4 @@ class DishAllActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-}
+}*/

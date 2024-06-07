@@ -8,6 +8,10 @@
     <color name="blueLightDesabled">#6ABFDF</color>
     <color name="red">#911528</color>
 
-    <color name="nameDish">#9E0B0708</color>
+    <color name="nameDish">#B9150D0F</color>
+
+    <color name="buttonNavSelector">#D82E49DC</color>
+    <color name="blue">#0094CB</color>
+    <color name="buttonBackground">#f7f7f7</color>
 
 </resources>

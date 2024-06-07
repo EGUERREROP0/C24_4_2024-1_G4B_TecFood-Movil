@@ -4,7 +4,7 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
 
-        <item name="android:statusBarColor" tools:targetApi="l">@color/blueLight</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/blue</item>
 
         <!--Desactivar titulo de la aplicacion -->
         <item name="windowActionBar"> false</item>
