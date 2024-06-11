@@ -14,4 +14,6 @@
     <color name="blue">#0094CB</color>
     <color name="buttonBackground">#f7f7f7</color>
 
+    <color name="divider">#555555</color>
+
 </resources>

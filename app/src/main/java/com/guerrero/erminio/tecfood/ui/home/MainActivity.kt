@@ -1,27 +1,14 @@
 package com.guerrero.erminio.tecfood.ui.home
 
-import android.content.Intent
+
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
+
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.guerrero.erminio.tecfood.LoginActivity
-import com.guerrero.erminio.tecfood.LoginActivity.Companion.useremail
 import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.TermsActivity
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
-
-import retrofit2.Retrofit
 
 
 class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener */ {
@@ -29,12 +16,6 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
-    private lateinit var drawer: DrawerLayout
-
-    //Implememntacion de viewBinding
-    // private lateinit var binding: ActivityMainBinding
-    private lateinit var retrofit: Retrofit
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +31,20 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
         initNavigationView()*/
 
     }
+
+
+    private fun initUI(){
+        initNavigation()
+    }
+
+    //Agregando framentes -- al main Activity
+    private fun initNavigation(){
+        val navHost = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
+
+        navController = navHost.navController
+        binding.bottomNavView.setupWithNavController(navController)
+    }
+
 
     // Function to initialize the toolbar
    /* private fun initToolbar() {
@@ -135,55 +130,5 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
     */
 
 
-
-
-
-    private fun initUI(){
-        initNavigation()
-    }
-
-    //Agregando framentes -- al main Activity
-    private fun initNavigation(){
-        val navHost = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
-
-        navController = navHost.navController
-        binding.bottomNavView.setupWithNavController(navController)
-    }
-
-
-    //Extraendo todos los platos en el main activity
-
-/*    private fun initUI() {
-        getAllDishes()
-
-        //Crear adapter
-        adapter = DishAllAdapter()
-        binding.rvList.setHasFixedSize(true)
-        binding.rvList.layoutManager = LinearLayoutManager(this)
-        binding.rvList.adapter = adapter
-    }
-
-    private fun getAllDishes() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val request = retrofit.create(ApiService::class.java).getPokemon()
-            if (request.isSuccessful) {
-                request.body()?.let {
-                    runOnUiThread {
-                        adapter.updateAllList(it.results)
-                    }
-                }
-            }
-        }
-
-    }
-
-    private fun getRetrifit(): Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("https://tecfood.herokuapp.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-*/
 
 }

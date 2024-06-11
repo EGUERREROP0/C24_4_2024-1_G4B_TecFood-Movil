@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/white"
         tools:context=".ui.ajustes.PerfilFragment">
 
@@ -20,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/blueLight"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:layout_scrollFlags="scroll|enterAlways" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/blueLight"
+
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintTop_toBottomOf="@+id/cabaecera"
@@ -42,16 +44,16 @@
                 android:id="@+id/lylyNav_header"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
             <LinearLayout
                     android:id="@+id/lylyNav_header1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:layout_marginStart="20dp"
-                    >
+                    android:layout_marginStart="20dp">
                 <!-- Imagen redondeada -->
+
                 <androidx.cardview.widget.CardView
                         android:translationZ="10dp"
                         android:id="@+id/cvLogoUser"
@@ -65,8 +67,7 @@
                             android:id="@+id/ivLogoUser"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@mipmap/ic_logo01_round"
-                            />
+                            android:src="@mipmap/ic_logo01_round" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -90,13 +91,98 @@
 
     </LinearLayout>
 
-    <Button
-            android:id="@+id/cerrar"
+    <LinearLayout
+            android:id="@+id/lylyDarkMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/nav_header"
-            android:text="Button" />
+            android:gravity="center_vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+                android:src="@drawable/ic_darh_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"/>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modo oscuro"
+                    android:textColor="@color/black"
+                    />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Activa el modo oscuro para un cambio visual"
+                    android:textSize="11dp"
+
+                    />
+
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swDarkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                />
+
+
+    </LinearLayout>
+
+    <!-- Dividir con una línea -->
+    <com.google.android.material.divider.MaterialDivider
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/lylyDarkMode"
+            app:dividerColor="@color/divider"
+            />
+
+    <!-- Add a new LinearLayout with id lylySignOutAll -->
+    <LinearLayout
+            android:id="@+id/lylySignOutAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/lylyDarkMode"
+            android:gravity="center_vertical">
+
+
+        <ImageView
+                android:src="@drawable/ic_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"/>
+
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cerrarSession"
+                    />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
 
 

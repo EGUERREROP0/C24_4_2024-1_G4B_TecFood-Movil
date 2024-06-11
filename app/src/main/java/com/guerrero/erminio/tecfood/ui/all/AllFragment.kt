@@ -42,7 +42,6 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
     private lateinit var adapter: DishAllAdapter
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
