@@ -14,6 +14,6 @@ interface ApiService {
 
     suspend fun getDish(@Path("name") dishName: String): Response<ResponseDish>
 
-    @GET("categories.php")
+    @GET("api/dish")
     suspend fun getPokemon(@Query("limit") limit: Int): Response<ResponseAllDish>
 }

@@ -81,10 +81,10 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
                         binding.progressBar.isVisible = false
                     }
                 }
-                Log.i("yo",  request.body().toString())
+                Log.i("response",  request.body().toString())
                 //Log.d("yo", "Funciona")
             }else{
-                Log.i("yo", "No Funciona")
+                Log.i("response", "No Funciona")
             }
         }
     }
@@ -92,7 +92,8 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
     private fun getRetrifit(): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+            .baseUrl("http://192.168.0.102:4000/")
+
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
