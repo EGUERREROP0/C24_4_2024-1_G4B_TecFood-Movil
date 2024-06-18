@@ -1,7 +1,7 @@
 package com.guerrero.erminio.tecfood.data
 
-import com.guerrero.erminio.tecfood.ui.all.ResponseAllDish
-import com.guerrero.erminio.tecfood.ui.search.DishItemResponse
+import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
+import com.guerrero.erminio.tecfood.data.model.ResponseAllDish
 import com.guerrero.erminio.tecfood.ui.search.ResponseDish
 import retrofit2.Response
 import retrofit2.http.GET
@@ -16,4 +16,7 @@ interface ApiService {
 
     @GET("api/dish")
     suspend fun getPokemon(@Query("limit") limit: Int): Response<ResponseAllDish>
+
+    @GET("api/dish/{id}")
+    suspend fun getDishDetail(@Path("id") dishId: Int): Response<DishInformationDetail>
 }

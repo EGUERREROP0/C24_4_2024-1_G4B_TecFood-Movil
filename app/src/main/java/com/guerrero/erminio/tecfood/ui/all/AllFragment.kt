@@ -5,26 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.guerrero.erminio.tecfood.LoginActivity
-import com.guerrero.erminio.tecfood.LoginActivity.Companion.useremail
-import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.TermsActivity
 import com.guerrero.erminio.tecfood.data.ApiService
-
 import com.guerrero.erminio.tecfood.databinding.FragmentAllBinding
+import com.guerrero.erminio.tecfood.ui.all.DetailDishActivity.Companion.DISH_ID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,7 +38,7 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
 
         // Initialize Retrofit and adapter here
         retrofit = getRetrifit()
-        adapter = DishAllAdapter()
+        adapter = DishAllAdapter {navegateToDetailActivity(it)}
 
         // Set the RecyclerView's adapter here
         binding.rvList.setHasFixedSize(true)
@@ -98,6 +86,12 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
             .build()
     }
 
+
+    private fun navegateToDetailActivity(id: Int){
+        var intent = Intent(requireContext(), DetailDishActivity::class.java)
+        intent.putExtra(DISH_ID, id)
+        startActivity(intent)
+    }
 
 
 

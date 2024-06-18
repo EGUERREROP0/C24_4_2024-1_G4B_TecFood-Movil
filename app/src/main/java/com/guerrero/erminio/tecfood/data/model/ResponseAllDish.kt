@@ -1,10 +1,10 @@
-package com.guerrero.erminio.tecfood.ui.all
+package com.guerrero.erminio.tecfood.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class ResponseAllDish(
     @SerializedName("dishes")
-    val categories: List< Category>
+    val categories: List<Category>
 
    // val categories: List<Category>
 

@@ -16,4 +16,7 @@
 
     <color name="divider">#555555</color>
 
+    <color name="trasparent">#00FFFFFF</color>
+    <color name="buttonColor">#FF3B2F</color>
+
 </resources>

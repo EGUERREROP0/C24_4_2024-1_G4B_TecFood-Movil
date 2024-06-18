@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
+import com.guerrero.erminio.tecfood.ui.orders.OrderFragment
 
 
 class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener */ {
@@ -25,10 +26,9 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
         //Iniciando navegacion
         initUI()
 
-        //Toast.makeText(this, "Welcome to TecFood $useremail", Toast.LENGTH_SHORT).show()
-
-        /*initToolbar()
-        initNavigationView()*/
+        if(intent.getBooleanExtra("openOrderFragment", false)){
+            navigateToOrderFragment()
+        }
 
     }
 
@@ -44,6 +44,12 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
         navController = navHost.navController
         binding.bottomNavView.setupWithNavController(navController)
     }
+
+    fun navigateToOrderFragment() {
+    supportFragmentManager.beginTransaction()
+        .replace(R.id.fcView, OrderFragment())
+        .commit()
+}
 
 
     // Function to initialize the toolbar

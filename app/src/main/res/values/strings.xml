@@ -34,4 +34,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buscar_plato">Buscar Plato</string>
     <string name="signOut">Cerrar cesion</string>
+    <string name="add">Agregar</string>
+    <string name="car">Ver carrito</string>
 </resources>
