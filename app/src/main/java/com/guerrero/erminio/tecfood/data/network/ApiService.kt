@@ -1,4 +1,4 @@
-package com.guerrero.erminio.tecfood.data
+package com.guerrero.erminio.tecfood.data.network
 
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
 import com.guerrero.erminio.tecfood.data.model.ResponseAllDish
@@ -10,8 +10,12 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("99c980fdccf958f2706484aab4eb351c/search/{name}")
+    //http://localhost:4000/api/dish/name/{{name}}
 
+    /*@GET("99c980fdccf958f2706484aab4eb351c/search/{name}")
+
+    suspend fun getDish(@Path("name") dishName: String): Response<ResponseDish>*/
+    @GET("api/dish/name/{name}")
     suspend fun getDish(@Path("name") dishName: String): Response<ResponseDish>
 
     @GET("api/dish")

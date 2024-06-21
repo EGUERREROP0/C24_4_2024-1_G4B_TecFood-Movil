@@ -1,9 +1,7 @@
 package com.guerrero.erminio.tecfood.ui.all
 
-import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.guerrero.erminio.tecfood.TermsActivity
 import com.guerrero.erminio.tecfood.data.model.Category
 import com.guerrero.erminio.tecfood.databinding.ItemDishBinding
 import com.squareup.picasso.Picasso
@@ -14,6 +12,7 @@ class DishAllViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(dishItemAllResponse: Category, onItemSelected: (Int) -> Unit){
 
         binding.tvDishName.text = dishItemAllResponse.name
+        binding.tvDishApparence.text = dishItemAllResponse.category.name
         binding.tvDishPrice.text = dishItemAllResponse.price.toString()
 
         Picasso.get()

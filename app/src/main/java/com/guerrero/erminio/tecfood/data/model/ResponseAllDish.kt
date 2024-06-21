@@ -10,7 +10,8 @@ data class ResponseAllDish(
 
 )
 data class Category(
-    //val category: Category,
+    //@SerializedName("Category")
+    val category: CategoryDish,
     val description: String,
     val idDish: Int,
     val imgUrl: String,
@@ -21,6 +22,10 @@ data class Category(
 //    val idCategory: String,
 //    val strCategory: String,
 //    val strCategoryThumb: String
+)
+data class CategoryDish(
+    val idDishCategory: Int,
+    val name: String
 )
 /*
 

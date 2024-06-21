@@ -1,5 +1,6 @@
 package com.guerrero.erminio.tecfood.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,15 +10,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.data.ApiService
-import com.guerrero.erminio.tecfood.databinding.ActivityDishlistBinding
+import com.guerrero.erminio.tecfood.data.network.ApiService
+import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
 import com.guerrero.erminio.tecfood.databinding.FragmentSearchBinding
+import com.guerrero.erminio.tecfood.ui.all.DetailDishActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class SearchFragment : Fragment() {
@@ -38,7 +38,7 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         //Inicializando retrofit global
-        retrofit = getRetrofit()
+        retrofit = RetrofitInstance.getRetrofit
         //Inicilizando
         initUI()
 
@@ -59,7 +59,7 @@ class SearchFragment : Fragment() {
         })
 
         //Crear adapter
-        adapter = DishAdapter()
+        adapter = DishAdapter { navegateToDetailActivity(it) }
         binding.rvListDishes.setHasFixedSize(true)
         binding.rvListDishes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvListDishes.adapter = adapter
@@ -83,7 +83,7 @@ class SearchFragment : Fragment() {
 
                     requireActivity().runOnUiThread {
                         binding.progressBar.isVisible = false
-                        adapter.updateList(response.results)
+                        adapter.updateList(response.dish)
                     }
                 } else {
                     Log.i("Response", "Error")
@@ -96,13 +96,10 @@ class SearchFragment : Fragment() {
 
     }
 
-    private fun getRetrofit(): Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("https://www.superheroapi.com/api.php/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private fun navegateToDetailActivity(id: Int){
+        var intent = Intent(requireContext(), DetailDishActivity::class.java)
+        intent.putExtra(DetailDishActivity.DISH_ID, id)
+        startActivity(intent)
     }
-
 
 }

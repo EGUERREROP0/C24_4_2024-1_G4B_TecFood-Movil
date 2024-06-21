@@ -1,4 +1,4 @@
-package com.guerrero.erminio.tecfood
+package com.guerrero.erminio.tecfood.ui.login
 
 import android.content.Intent
 import android.os.Bundle

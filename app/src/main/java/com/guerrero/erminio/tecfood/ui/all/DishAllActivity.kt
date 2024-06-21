@@ -1,23 +1,5 @@
 package com.guerrero.erminio.tecfood.ui.all
 
-import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.data.ApiService
-import com.guerrero.erminio.tecfood.databinding.ActivityDishallBinding
-import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 /*class DishAllActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDishallBinding
 

@@ -36,4 +36,7 @@
     <string name="signOut">Cerrar cesion</string>
     <string name="add">Agregar</string>
     <string name="car">Ver carrito</string>
+    <string name="name_dish">nombre Palto</string>
+    <string name="catgory">Catgory</string>
+    <string name="price">Precio: $./ </string>
 </resources>

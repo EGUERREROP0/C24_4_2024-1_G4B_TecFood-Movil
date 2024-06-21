@@ -1,24 +1,5 @@
 package com.guerrero.erminio.tecfood.ui.search
 
-import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.data.ApiService
-import com.guerrero.erminio.tecfood.databinding.ActivityDishlistBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 /*class DishListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDishlistBinding
     private lateinit var retrofit: Retrofit

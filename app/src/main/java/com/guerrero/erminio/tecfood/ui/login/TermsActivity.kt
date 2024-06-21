@@ -1,10 +1,8 @@
-package com.guerrero.erminio.tecfood
+package com.guerrero.erminio.tecfood.ui.login
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.guerrero.erminio.tecfood.R
 
 class TermsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

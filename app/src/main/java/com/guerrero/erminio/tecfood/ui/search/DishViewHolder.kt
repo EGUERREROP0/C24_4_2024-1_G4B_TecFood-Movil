@@ -9,14 +9,18 @@ class DishViewHolder(view: View): RecyclerView.ViewHolder(view){
     //Binding
     private val binding = ItemDishBinding.bind(view)
 
-    fun bind(dishItemResponse: DishItemResponse){
+    fun bind(dishItemResponse: DishItemResponse, onItemSelected: (Int) -> Unit){
 
         binding.tvDishName.text = dishItemResponse.name
-        binding.tvDishApparence.text = dishItemResponse.appearance.race
+        binding.tvDishApparence.text = dishItemResponse.category.name
+        binding.tvDishPrice.text = dishItemResponse.price.toString()
 
-        //Picasso para laimagen
+        //Picasso para la imagen
         Picasso.get()
-            .load(dishItemResponse.image.url)
+            .load(dishItemResponse.imgUrl)
             .into(binding.ivDish)
+
+        //Navegacion hacia detalle
+        binding.root.setOnClickListener { onItemSelected(dishItemResponse.idDish) }
     }
 }

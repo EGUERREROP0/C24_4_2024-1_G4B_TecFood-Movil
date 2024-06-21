@@ -16,16 +16,17 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <activity
+                android:name=".domain.Login2Activity"
+                android:exported="false" />
+        <activity
                 android:name=".ui.all.DetailDishActivity"
                 android:exported="false" />
         <activity
-                android:name=".TermsActivity"
+                android:name=".ui.login.TermsActivity"
                 android:exported="false" />
+
         <activity
-                android:name=".ui.search.DishListActivity"
-                android:exported="false" />
-        <activity
-                android:name=".SplashActivity"
+                android:name=".ui.login.SplashActivity"
                 android:exported="true"
                 android:screenOrientation="unspecified">
             <intent-filter>
@@ -35,16 +36,12 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".LoginActivity"
+                android:name=".ui.login.LoginActivity"
                 android:exported="true"
-                android:screenOrientation="unspecified">
-
-        </activity>
+                android:screenOrientation="unspecified"></activity>
         <activity
                 android:name=".ui.home.MainActivity"
-                android:exported="true">
-
-        </activity>
+                android:exported="true"></activity>
     </application>
 
 </manifest>

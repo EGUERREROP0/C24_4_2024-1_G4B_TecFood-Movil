@@ -10,7 +10,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.guerrero.erminio.tecfood.data.ApiService
+import com.guerrero.erminio.tecfood.data.network.ApiService
+import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
 import com.guerrero.erminio.tecfood.databinding.FragmentAllBinding
 import com.guerrero.erminio.tecfood.ui.all.DetailDishActivity.Companion.DISH_ID
 import kotlinx.coroutines.CoroutineScope
@@ -37,7 +38,7 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
         _binding = FragmentAllBinding.inflate(inflater, container, false)
 
         // Initialize Retrofit and adapter here
-        retrofit = getRetrifit()
+        retrofit = RetrofitInstance.getRetrofit
         adapter = DishAllAdapter {navegateToDetailActivity(it)}
 
         // Set the RecyclerView's adapter here
@@ -46,9 +47,6 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
         binding.rvList.adapter = adapter
 
         initUI()
-
-//        initToolbar()
-//        initNavigationView()
 
         return binding.root
 
@@ -77,16 +75,8 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
         }
     }
 
-    private fun getRetrifit(): Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("http://192.168.0.102:4000/")
 
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-
+    //Click en producto llevar a detalle
     private fun navegateToDetailActivity(id: Int){
         var intent = Intent(requireContext(), DetailDishActivity::class.java)
         intent.putExtra(DISH_ID, id)
