@@ -4,7 +4,7 @@
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
-    <string name="forgotPassword">¿Olvidaste tu contraseña?</string>
+    <string name="forgotPassword">¿Ya tienes una cuenta?</string>
     <string name="acept">He leido y acepto lo</string>
     <string name="terms">Terminos y condiciones</string>
     <string name="google">GOOGLE</string>
@@ -39,4 +39,9 @@
     <string name="name_dish">nombre Palto</string>
     <string name="catgory">Catgory</string>
     <string name="price">Precio: $./ </string>
+    <string name="iniciar_cesion">Iniciar cesion</string>
+    <string name="nombres">Nombres</string>
+    <string name="last_name">Apellidos</string>
+    <string name="acount_not">¿Aun no tienes cuenta?</string>
+    <string name="registrate">Registrate</string>
 </resources>

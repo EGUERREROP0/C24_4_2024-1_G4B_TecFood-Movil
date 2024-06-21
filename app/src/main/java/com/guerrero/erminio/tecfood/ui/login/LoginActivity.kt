@@ -11,6 +11,7 @@ import com.guerrero.erminio.tecfood.data.network.PreferenceHelper.get
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper.set
 import com.guerrero.erminio.tecfood.databinding.ActivityLoginBinding
 import com.guerrero.erminio.tecfood.ui.home.MainActivity
+import com.guerrero.erminio.tecfood.ui.register.RegisterActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,9 @@ class LoginActivity : AppCompatActivity() {
             showAlertDialogWithToastMessage("Aun no disponible, estamos trabajando para tener esta funcionalidad")
         }
 
+        binding.tvGoRegister.setOnClickListener{
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
 
     }
 
@@ -45,9 +49,11 @@ class LoginActivity : AppCompatActivity() {
             goToMenu()
     }
 
-    private fun createSessionPreference(token: String) {
+    private fun createSessionPreference(token: String, user: Data) {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["token"] = token
+        preferences["userEmail"] = user.email
+        preferences["userName"] = "${user.lastName}, ${user.firstName}"
 
     }
 
@@ -72,8 +78,9 @@ class LoginActivity : AppCompatActivity() {
                         return
                     }
                     if (response.code() == 200) {
-                        createSessionPreference(loginResponse.token)
+                        createSessionPreference(loginResponse.token, loginResponse.user)
                         goToMenu()
+
                     } else {
                         showAlertDialogWithToastMessage("Credenciales incorrectas")
                     }

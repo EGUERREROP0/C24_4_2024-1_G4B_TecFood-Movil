@@ -3,7 +3,6 @@ package com.guerrero.erminio.tecfood.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -11,8 +10,7 @@ import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
 import com.guerrero.erminio.tecfood.ui.orders.OrderFragment
 
-
-class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener */ {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -26,19 +24,18 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
         //Iniciando navegacion
         initUI()
 
-        if(intent.getBooleanExtra("openOrderFragment", false)){
+        if (intent.getBooleanExtra("openOrderFragment", false)) {
             navigateToOrderFragment()
         }
 
     }
 
-
-    private fun initUI(){
+    private fun initUI() {
         initNavigation()
     }
 
     //Agregando framentes -- al main Activity
-    private fun initNavigation(){
+    private fun initNavigation() {
         val navHost = supportFragmentManager.findFragmentById(R.id.fcView) as NavHostFragment
 
         navController = navHost.navController
@@ -46,95 +43,9 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
     }
 
     fun navigateToOrderFragment() {
-    supportFragmentManager.beginTransaction()
-        .replace(R.id.fcView, OrderFragment())
-        .commit()
-}
-
-
-    // Function to initialize the toolbar
-   /* private fun initToolbar() {
-        //enableEdgeToEdge()
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
-        setSupportActionBar(toolbar)
-
-        //Variables globales
-        drawer = findViewById(R.id.drawer_layout)
-        val toggle = ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.bar_title,
-            R.string.navigation_drawer_close
-        )
-
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fcView, OrderFragment())
+            .commit()
     }
-
-    //Function to inicialize the navigation view
-    private fun initNavigationView() {
-        var navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        var headerView: View =
-            LayoutInflater.from(this).inflate(R.layout.nav_header_main, navigationView, false)
-        navigationView.removeHeaderView(headerView)
-        navigationView.addHeaderView(headerView)
-
-        var tvUser = headerView.findViewById<TextView>(R.id.tvUser)
-        tvUser.text = useremail
-
-    }
-
-
-    fun callSignOut() {
-        signOut()
-    }
-
-    private fun signOut() {
-        useremail = ""
-        FirebaseAuth.getInstance().signOut()
-
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-
-    }
-
-    // dar vida al menu
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_item_signOut -> {
-                signOut()
-            }
-
-            R.id.nav_item_record -> {
-                histories()
-            }
-
-            R.id.nav_item_searchDish -> {
-                searchDish()
-            }
-
-            R.id.nav_item_Main ->{
-                val intent = Intent(this, DishAllActivity::class.java)
-                startActivity(intent)
-            }
-
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
-    }
-
-    private fun histories() {
-        val intent = Intent(this, TermsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun searchDish() {
-        val intent = Intent(this, DishListActivity::class.java)
-        startActivity(intent)
-    }
-
-    */
-
-
 
 }

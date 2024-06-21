@@ -5,17 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.login.LoginActivity">
 
     <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
         >
-
 
         <ImageView
                 android:id="@+id/imageView"
@@ -30,8 +30,9 @@
                 android:layout_margin="8dp"
                 android:gravity="center"
                 android:paddingTop="20dp"
-                android:text="@string/bienvenida"
-                android:textColor="@color/white"
+                android:fontFamily="@font/robotoseriff"
+                android:text="@string/iniciar_cesion"
+                android:textColor="@color/black"
                 android:textSize="30sp" />
 
 
@@ -39,22 +40,23 @@
                 android:id="@+id/containerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:hint="@string/email"
-                app:boxStrokeColor="@color/blueLight"
-                app:hintTextColor="@color/white"
-                app:passwordToggleTint="@color/white"
+                app:boxStrokeColor="@color/border_color"
+                app:hintTextColor="@color/black"
+                app:passwordToggleTint="@color/black"
+                app:boxStrokeWidth="3dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <EditText
                     android:id="@+id/etEmail"
                     style="@style/viewCustom"
                     android:layout_marginTop="0dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/black"
                     android:inputType="textEmailAddress"
                     android:paddingTop="25dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,24 +65,24 @@
                 android:id="@+id/tilRepitPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:hint="@string/password"
-
-                app:boxStrokeColor="@color/blueLight"
-                app:hintTextColor="@color/white"
+                app:boxStrokeColor="@color/border_color"
+                app:boxStrokeWidth="3dp"
+                app:hintTextColor="@color/black"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/white"
+                app:passwordToggleTint="@color/black"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <EditText
                     android:id="@+id/etPassword"
                     style="@style/viewCustom"
                     android:layout_marginTop="0dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/black"
                     android:inputType="textPassword"
                     android:paddingTop="30dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,41 +96,72 @@
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
                 android:backgroundTint="@color/blueLight"
+                android:fontFamily="@font/robotosemi"
                 android:text="@string/login"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
 
-        <TextView
-                android:id="@+id/tvforgotPassword"
+        <LinearLayout
                 style="@style/viewCustom"
-                android:layout_below="@id/btnLogin"
-                android:gravity="center"
-                android:onClick="forgotPassword"
-                android:text="@string/forgotPassword"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tvHaveAcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/acount_not"
+                    android:textSize="20sp" />
+
+            <TextView
+                    android:id="@+id/tvGoRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/registrate"
+                    android:layout_gravity="end"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+        </LinearLayout>
 
 
     </LinearLayout>
+
     <!--Botones de registro-->
-    <Button
+    <LinearLayout
             android:id="@+id/btnSignGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
             android:background="@drawable/button_login"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/google"
-            android:paddingLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/google"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:onClick="callSignGoogle"
             app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/viewCustom"
+
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/google"
+                android:layout_marginStart="20sp"
             />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingresar con google"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

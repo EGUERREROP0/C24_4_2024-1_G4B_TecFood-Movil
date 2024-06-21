@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.guerrero.erminio.tecfood.ui.login.LoginActivity
 import com.guerrero.erminio.tecfood.databinding.FragmentPerfilBinding
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
+import com.guerrero.erminio.tecfood.data.network.PreferenceHelper.get
 
 
 class PerfilFragment : Fragment() {
@@ -24,7 +25,7 @@ class PerfilFragment : Fragment() {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
 
         signOut()
-
+        loadUserProfile()
         return binding.root
     }
 
@@ -38,7 +39,6 @@ class PerfilFragment : Fragment() {
 
     private fun performLogout(){
         clearSesion()
-
         goToLogin()
     }
 
@@ -52,5 +52,15 @@ class PerfilFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
+    private fun loadUserProfile() {
+        val preferences = PreferenceHelper.defaultPrefs(requireContext())
+        val userEmail = preferences["userEmail", ""]
+        val userName = preferences["userName", ""]
+
+        binding.tvUserName.text = userName.uppercase()
+        binding.tvUserEmail.text = userEmail
+
+    }
+
 
     }

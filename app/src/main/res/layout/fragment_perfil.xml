@@ -21,19 +21,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/blueLight"
+
                 app:layout_scrollFlags="scroll|enterAlways" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
+
             android:id="@+id/nav_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/blueLight"
-
-            android:clickable="true"
-            android:focusable="true"
             app:layout_constraintTop_toBottomOf="@+id/cabaecera"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:gravity="bottom"
@@ -74,7 +73,16 @@
         </LinearLayout>
 
         <TextView
-                android:id="@+id/tvUser"
+                android:id="@+id/tvUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16sp"
+                android:fontFamily="@font/robotoseriff"
+                android:text="@string/user"
+                android:textColor="@color/white" />
+
+        <TextView
+                android:id="@+id/tvUserEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16sp"
@@ -87,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="16sp"
                 android:text="@string/bienvenida"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/robotoseriff"
+                android:textStyle="bold"/>
 
     </LinearLayout>
 

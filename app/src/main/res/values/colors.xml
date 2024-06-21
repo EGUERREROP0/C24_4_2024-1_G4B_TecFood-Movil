@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whiteLogin">#F5F5F5</color>
     <color name="gray">#151518</color>
     <color name="blueLight">#00AEEF</color>
     <color name="salmon">#EF7510</color>
