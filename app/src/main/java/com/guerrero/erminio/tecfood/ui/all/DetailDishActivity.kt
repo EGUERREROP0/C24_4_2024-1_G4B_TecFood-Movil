@@ -1,9 +1,12 @@
 package com.guerrero.erminio.tecfood.ui.all
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+
 import androidx.appcompat.app.AppCompatActivity
 import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
@@ -15,6 +18,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
+
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.withContext
+
+
+val Context.dataStore by preferencesDataStore(name = "DATA_DISH")
 
 class DetailDishActivity : AppCompatActivity() {
     companion object {
@@ -36,12 +48,26 @@ class DetailDishActivity : AppCompatActivity() {
         getInformation(id)
 
         initUI()
+
+        /*
+        * ===========SAVE VALUES  DATASTORE=========
+        * */
+        /*val nameDish = binding.tvDishName
+        val priceDish = binding.tvPrice
+        val imageDish = binding.imageView
+
+        binding.btnAddCart.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                saveValuesDataStore(nameDish.text.toString(), priceDish.text.toString(), imageDish)
+
+            }
+        }*/
     }
 
     private fun initUI() {
         returnArrow()
         goOrders()
-        addCart()
+
     }
 
     //Obtener informacion de un plato
@@ -64,8 +90,20 @@ class DetailDishActivity : AppCompatActivity() {
         binding.tvPrice.text = dish.dish.price.toString()
         binding.tvCategory.text = dish.dish.category.name
 
-        //Cargar imagen
-        Picasso.get().load(dish.dish.imgUrl).into(binding.imageView)
+        // Cargar imagen
+        val imageUrl = dish.dish.imgUrl
+        Picasso.get().load(imageUrl).into(binding.imageView)
+
+        // Guardar valores en DataStore cuando se hace clic en el botón
+        binding.btnAddCart.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                saveValuesDataStore(binding.tvDishName.text.toString(), binding.tvPrice.text.toString(), imageUrl)
+                withContext(Dispatchers.Main) {
+                    //Mensaje de agregado al carrrito
+                    addCart()
+                }
+            }
+        }
     }
 
     //Retornat flecha -volver al menu principal
@@ -88,21 +126,24 @@ class DetailDishActivity : AppCompatActivity() {
 
     //Click en agregar al carrito
     private fun addCart() {
-        binding.btnAddCart.setOnClickListener {
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Confirmacion")
-                .setMessage("\uD83C\uDF89 ¡Genial! El plato ha sido agregado al carrito, verifica tus ordenes. \uD83D\uDED2")
-                .setPositiveButton("Ok") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .create()
-
-            dialog.setOnDismissListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Confirmacion")
+            .setMessage("\uD83C\uDF89 ¡Genial! El plato ha sido agregado al carrito, verifica tus ordenes. \uD83D\uDED2")
+            .setPositiveButton("Ok") { dialog, _ ->
+                dialog.dismiss()
             }
-            dialog.show()
+            .show()
+    }
+
+
+    //AGREGA DATOS EN DATASTORE
+    private suspend fun saveValuesDataStore(name: String, price: String, image: String) {
+        dataStore.edit { preferences ->
+            preferences[stringPreferencesKey("nameDish")] = name
+            preferences[stringPreferencesKey("priceDish")] = price
+            preferences[stringPreferencesKey("imageDish")] = image
         }
+        Log.d("DataStore", "Saved to DataStore: Name: $name, Price: $price, Image: $image")
     }
 
 }
