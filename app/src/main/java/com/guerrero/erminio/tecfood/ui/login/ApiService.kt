@@ -9,6 +9,7 @@ import retrofit2.http.POST
 data class LoginRequest(val email: String, val password: String)
 
 interface ApiService {
+
     @POST("api/auth/login")
     fun postLogin(@Body request: LoginRequest): Call<LoginResponse>
 

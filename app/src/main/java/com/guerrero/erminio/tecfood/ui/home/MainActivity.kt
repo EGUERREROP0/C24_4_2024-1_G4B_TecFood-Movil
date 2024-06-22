@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.snackbar.Snackbar
 import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
 import com.guerrero.erminio.tecfood.ui.orders.OrderFragment
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Snackbar.make(binding.root, "Bienvenido", Snackbar.LENGTH_SHORT).show()
         //Iniciando navegacion
         initUI()
 
