@@ -37,22 +37,21 @@ class PerfilFragment : Fragment() {
     }
 
 
-    private fun performLogout() {
+    private fun performLogout(){
         clearSesion()
         goToLogin()
     }
 
-    private fun clearSesion() {
+    private fun clearSesion(){
         val preferences = PreferenceHelper.defaultPrefs(requireContext())
         preferences.edit().clear().apply()
     }
 
-    private fun goToLogin() {
+    private fun goToLogin(){
         val intent = Intent(requireContext(), LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
     private fun loadUserProfile() {
         val preferences = PreferenceHelper.defaultPrefs(requireContext())
         val userEmail = preferences["userEmail", ""]
@@ -62,5 +61,6 @@ class PerfilFragment : Fragment() {
         binding.tvUserEmail.text = userEmail
 
     }
-}
 
+
+    }

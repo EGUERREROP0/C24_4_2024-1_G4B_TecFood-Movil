@@ -1,13 +1,15 @@
 package com.guerrero.erminio.tecfood.ui.all
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
 import com.guerrero.erminio.tecfood.data.network.ApiService
+import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
 import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
 import com.guerrero.erminio.tecfood.databinding.ActivityDetailDishBinding
@@ -19,6 +21,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.Retrofit
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 data class OrderRequest(
     val userId: Int,
@@ -76,13 +81,12 @@ class DetailDishActivity : AppCompatActivity() {
         Picasso.get().load(imageUrl).into(binding.imageView)
 
         binding.btnAddCart.setOnClickListener {
-            val sharedPreferences = PreferenceHelper.defaultPrefs(this)
-            val token = sharedPreferences.getString("token", null) ?: return@setOnClickListener
-            val userId = getUserIdFromToken(token)
-            val quantity = 1
+            val token = PreferenceHelper.defaultPrefs(this).getString("token", null)
+                ?: return@setOnClickListener
+            val userId = getUserIdFromToken(token) ?: return@setOnClickListener
 
             CoroutineScope(Dispatchers.IO).launch {
-                addProductToOrder(userId, idDish, quantity, token)
+                addProductToOrder(userId, idDish, 1, token)
             }
         }
 
@@ -104,8 +108,6 @@ class DetailDishActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(errorBody)
                     val errorMessage = jsonObject.getString("error")
                     Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
-                    //Log.e("DetailDishActivity", "Failed to add product. Status code: ${response.code()}, Error body: ${response.errorBody()?.string()}")
-
                 }
             }
         } catch (e: Exception) {

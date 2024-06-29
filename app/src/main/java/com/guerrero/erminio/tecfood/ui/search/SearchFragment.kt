@@ -74,13 +74,21 @@ class SearchFragment : Fragment() {
                 .create(ApiService::class.java)
                 .getDish(query)
 
-            val response: ResponseDish? = myResponse.body()
-            if (myResponse.isSuccessful && response != null) {
-                Log.i("Response", response.toString())
-                requireActivity().runOnUiThread {
-                    binding.progressBar.isVisible = false
-                    adapter.updateList(response.dish)
+            if (myResponse.isSuccessful) {
+                Log.i("Response", "verified")
+
+                val response: ResponseDish? = myResponse.body()
+                if (response != null) {
+                    Log.i("Response", response.toString())
+
+                    requireActivity().runOnUiThread {
+                        binding.progressBar.isVisible = false
+                        adapter.updateList(response.dish)
+                    }
+                } else {
+                    Log.i("Response", "Error")
                 }
+
             } else {
                 Log.i("Response", "Error")
             }

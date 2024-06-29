@@ -3,13 +3,14 @@ package com.guerrero.erminio.tecfood.ui.all
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
@@ -20,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 
@@ -82,9 +84,7 @@ class AllFragment : Fragment() {
                             dialog.dismiss()
                         }
                         .show()
-                    binding.tvErrorMessage.visibility = View.VISIBLE
-                    binding.tvError.visibility = View.VISIBLE
-                    binding.progressBar.isVisible = false
+                    binding.progressBar.isVisible = true
                 }
             } catch (e: HttpException) {
                 requireActivity().runOnUiThread {
