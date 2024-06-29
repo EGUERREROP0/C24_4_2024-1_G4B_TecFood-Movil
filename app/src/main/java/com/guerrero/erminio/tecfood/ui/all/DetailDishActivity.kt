@@ -6,10 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
+import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
 import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
 import com.guerrero.erminio.tecfood.databinding.ActivityDetailDishBinding
 import com.guerrero.erminio.tecfood.ui.home.MainActivity
@@ -17,16 +18,18 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
 
-
-val Context.dataStore by preferencesDataStore(name = "DATA_DISH")
+data class OrderRequest(
+    val userId: Int,
+    val dishId: Int,
+    val quantity: Int
+)
 
 class DetailDishActivity : AppCompatActivity() {
     companion object {
@@ -41,40 +44,21 @@ class DetailDishActivity : AppCompatActivity() {
         binding = ActivityDetailDishBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initializo Retrofit
         retrofit = RetrofitInstance.getRetrofit
 
         val id: Int = intent.getIntExtra(DISH_ID, 0)
         getInformation(id)
-
         initUI()
-
-        /*
-        * ===========SAVE VALUES  DATASTORE=========
-        * */
-        /*val nameDish = binding.tvDishName
-        val priceDish = binding.tvPrice
-        val imageDish = binding.imageView
-
-        binding.btnAddCart.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                saveValuesDataStore(nameDish.text.toString(), priceDish.text.toString(), imageDish)
-
-            }
-        }*/
     }
 
     private fun initUI() {
         returnArrow()
         goOrders()
-
     }
 
-    //Obtener informacion de un plato
     private fun getInformation(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val dishDetail = retrofit.create(ApiService::class.java).getDishDetail(id)
-
             if (dishDetail.body() != null) {
                 runOnUiThread {
                     createUI(dishDetail.body()!!)
@@ -90,23 +74,58 @@ class DetailDishActivity : AppCompatActivity() {
         binding.tvPrice.text = dish.dish.price.toString()
         binding.tvCategory.text = dish.dish.category.name
 
+        val idDish = dish.dish.idDish
+
         // Cargar imagen
         val imageUrl = dish.dish.imgUrl
         Picasso.get().load(imageUrl).into(binding.imageView)
 
-        // Guardar valores en DataStore cuando se hace clic en el botón
         binding.btnAddCart.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                saveValuesDataStore(binding.tvDishName.text.toString(), binding.tvPrice.text.toString(), imageUrl)
+            val sharedPreferences = PreferenceHelper.defaultPrefs(this)
+            val token = sharedPreferences.getString("token", null)
+            if (token == null) {
+                return@setOnClickListener
+            }
+            val userId = getUserIdFromToken(token)
+            if (userId == null) {
+                return@setOnClickListener
+            }
+            val quantity = 1
+
+            CoroutineScope(Dispatchers.IO).launch {
+                addProductToOrder(userId, idDish, quantity, token)
+            }
+        }
+
+    }
+
+    private suspend fun addProductToOrder(userId: Int, dishId: Int, quantity: Int, token: String) {
+        try {
+            val apiService = retrofit.create(ApiService::class.java)
+            val orderRequest = OrderRequest(userId, dishId, quantity)
+            val response = apiService.addProductToOrder("Bearer $token", orderRequest)
+            if (response.isSuccessful) {
                 withContext(Dispatchers.Main) {
-                    //Mensaje de agregado al carrrito
                     addCart()
+                    Log.d("DetailDishActivity", "Product added successfully")
                 }
+            } else {
+                withContext(Dispatchers.Main) {
+                    val errorBody = response.errorBody()?.string()
+                    val jsonObject = JSONObject(errorBody)
+                    val errorMessage = jsonObject.getString("error")
+                    Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
+                    //Log.e("DetailDishActivity", "Failed to add product. Status code: ${response.code()}, Error body: ${response.errorBody()?.string()}")
+
+                }
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Log.e("DetailDishActivity", "Exception: ${e.message}")
             }
         }
     }
 
-    //Retornat flecha -volver al menu principal
     private fun returnArrow() {
         binding.ivreturn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -114,7 +133,6 @@ class DetailDishActivity : AppCompatActivity() {
         }
     }
 
-    //Navegar a orderFragment
     private fun goOrders() {
         binding.lygoToOrders.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java).apply {
@@ -124,7 +142,6 @@ class DetailDishActivity : AppCompatActivity() {
         }
     }
 
-    //Click en agregar al carrito
     private fun addCart() {
         val dialog = AlertDialog.Builder(this)
             .setTitle("Confirmacion")
@@ -135,15 +152,8 @@ class DetailDishActivity : AppCompatActivity() {
             .show()
     }
 
-
-    //AGREGA DATOS EN DATASTORE
-    private suspend fun saveValuesDataStore(name: String, price: String, image: String) {
-        dataStore.edit { preferences ->
-            preferences[stringPreferencesKey("nameDish")] = name
-            preferences[stringPreferencesKey("priceDish")] = price
-            preferences[stringPreferencesKey("imageDish")] = image
-        }
-        Log.d("DataStore", "Saved to DataStore: Name: $name, Price: $price, Image: $image")
+    private fun getUserIdFromToken(token: String): Int {
+        return 123
     }
-
 }
+

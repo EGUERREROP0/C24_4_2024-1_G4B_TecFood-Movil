@@ -7,16 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.ui.all.DishDataStore
+import com.guerrero.erminio.tecfood.data.model.Cart
 import com.squareup.picasso.Picasso
 
-
-class DishAdapter(private var dishes: List<DishDataStore>) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
+class DishAdapter(private var carts: List<Cart>) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
 
     class DishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.tvOrderName)
         val priceTextView: TextView = itemView.findViewById(R.id.tvOrderPrice)
-        val dishImageView: ImageView = itemView.findViewById((R.id.ivOrderImage))
+        val dishImageView: ImageView = itemView.findViewById(R.id.ivOrderImage)
+        val quantityView: TextView = itemView.findViewById(R.id.tvOrderQuantity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
@@ -25,19 +25,20 @@ class DishAdapter(private var dishes: List<DishDataStore>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
-        val dish = dishes[position]
-        holder.nameTextView.text = dish.nameDish
-        holder.priceTextView.text = dish.priceDish
-        Picasso
-            .get()
-            .load(dish.imageDish)
-            .into(holder.dishImageView)
+        val cart = carts[position]
+        val dish = cart.dish
+        val totalDishPrice = dish.price * cart.quantity
+
+        holder.nameTextView.text = dish.name
+        holder.priceTextView.text = totalDishPrice.toString()
+        holder.quantityView.text = ": ${cart.quantity}"
+        Picasso.get().load(dish.imgUrl).into(holder.dishImageView)
     }
 
-    override fun getItemCount(): Int = dishes.size
+    override fun getItemCount(): Int = carts.size
 
-    fun updateDishes(newDishes: List<DishDataStore>) {
-        dishes = newDishes
+    fun updateCarts(newCarts: List<Cart>) {
+        carts = newCarts
         notifyDataSetChanged()
     }
 }

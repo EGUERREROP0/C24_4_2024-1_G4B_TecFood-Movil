@@ -75,11 +75,8 @@ dependencies {
     //Tarjetas
     implementation 'com.google.android.material:material:1.4.0'
 
-
     //Icons
     implementation 'com.google.android.material:material:1.4.0'
-
-
 
     //Animacion
     implementation 'com.github.rommansabbir:AnimationX:2.0'
@@ -99,5 +96,6 @@ dependencies {
 
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
 }
 

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.pay.PaymentActivity">
+
+    <LinearLayout
+            android:id="@+id/lylyDishNameParent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+            <ImageView
+                    android:id="@+id/ivreturn"
+                    android:src="@drawable/ic_return"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp" />
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/tvDishNameTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pago"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/robotoseriff"
+                        android:padding="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lylyDishNameParent">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Nombre de la tarjeta"
+                android:layout_marginBottom="10dp" />
+
+        <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:background="@drawable/background_rounded_edit_text"
+                android:hint="Nombre de la tarjeta"
+                android:paddingHorizontal="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/black" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="Numero de la tarjeta" />
+
+        <EditText
+
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:inputType="text"
+                android:hint="0000 0000 0000 0000"
+                android:background="@drawable/background_rounded_edit_text"
+                android:paddingHorizontal="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:paddingRight="5sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:text="Expiracion" />
+
+                <EditText
+
+                        android:id="@+id/edtPassword1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="text"
+                        android:hint="MM/YY"
+                        android:background="@drawable/background_rounded_edit_text"
+                        android:paddingHorizontal="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:paddingLeft="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:text="CCV" />
+
+                <EditText
+
+                        android:id="@+id/edtPassword2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="text"
+                        android:hint="123"
+                        android:background="@drawable/background_rounded_edit_text"
+                        android:paddingHorizontal="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tvContinuePayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continuar pago"
+            android:fontFamily="@font/robotosemi"
+            android:gravity="center"
+            android:padding="13dp"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/buttonColor"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

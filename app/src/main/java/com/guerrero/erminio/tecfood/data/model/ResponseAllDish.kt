@@ -19,9 +19,6 @@ data class Category(
     val price: Double,
     val stock: Int
 
-//    val idCategory: String,
-//    val strCategory: String,
-//    val strCategoryThumb: String
 )
 data class CategoryDish(
     val idDishCategory: Int,

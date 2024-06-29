@@ -44,4 +44,8 @@
     <string name="last_name">Apellidos</string>
     <string name="acount_not">¿Aun no tienes cuenta?</string>
     <string name="registrate">Registrate</string>
+    <string name="total_price">Total: %s</string>
+    <string name="sms_error">En mantenimiento.\nPor favor, inténtalo de nuevo en unos minutos.</string>
+    <string name="pedir">Pedir</string>
+    <string name="cantidad">Cantidad</string>
 </resources>

@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         preferences["token"] = token
         preferences["userEmail"] = user.email
         preferences["userName"] = "${user.lastName}, ${user.firstName}"
-
+        Log.d("LoginActivity", "Token: $token")
     }
 
     private fun performLogin() {

@@ -14,7 +14,9 @@ interface ApiService {
     fun postLogin(@Body request: LoginRequest): Call<LoginResponse>
 
     companion object {
+
         private const val BASE_URL = "http://192.168.0.102:4000/"
+//        private const val BASE_URL = "http://192.168.208.219:4000/"
 
         fun create(): ApiService {
             return Retrofit.Builder()
@@ -25,3 +27,10 @@ interface ApiService {
         }
     }
 }
+
+
+
+
+
+
+

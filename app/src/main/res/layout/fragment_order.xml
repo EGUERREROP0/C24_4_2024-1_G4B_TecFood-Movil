@@ -24,7 +24,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<!--Recicler view-->
+    <!--Recicler view-->
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvList"
             android:layout_width="0dp"
@@ -42,17 +42,35 @@
 
             />
 
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floatTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="3dp"
+            android:text="Tu texto aquí"
+            app:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#22ED7563"
+            app:tint="@color/red"
+            tools:visibility="visible" />
+
+
+
     <TextView
             android:id="@+id/btnContinueToPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pagar"
+            android:text="@string/pedir"
             android:textSize="20dp"
             android:gravity="center"
             android:padding="17dp"
             android:layout_marginBottom="100dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@color/buttonColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

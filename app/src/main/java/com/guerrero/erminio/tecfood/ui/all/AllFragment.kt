@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +19,13 @@ import com.guerrero.erminio.tecfood.ui.all.DetailDishActivity.Companion.DISH_ID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
 
-class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListener*/ {
+class AllFragment : Fragment() {
 
     private lateinit var drawer: DrawerLayout
     private var _binding: FragmentAllBinding? = null
@@ -39,7 +43,7 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
 
         // Initialize Retrofit and adapter here
         retrofit = RetrofitInstance.getRetrofit
-        adapter = DishAllAdapter {navegateToDetailActivity(it)}
+        adapter = DishAllAdapter { navegateToDetailActivity(it) }
 
         // Set the RecyclerView's adapter here
         binding.rvList.setHasFixedSize(true)
@@ -59,104 +63,47 @@ class AllFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListene
     private fun getAllDishes() {
         binding.progressBar.isVisible = true
         CoroutineScope(Dispatchers.IO).launch {
-            val request = retrofit.create(ApiService::class.java).getPokemon(100)
-            if (request.isSuccessful) {
-                request.body()?.let {
-                    requireActivity().runOnUiThread {
-                        adapter.updateAllList(it.categories)
-                        binding.progressBar.isVisible = false
+            try {
+                val request = retrofit.create(ApiService::class.java).getPokemon(100)
+                if (request.isSuccessful) {
+                    request.body()?.let {
+                        requireActivity().runOnUiThread {
+                            adapter.updateAllList(it.categories)
+                            binding.progressBar.isVisible = false
+                        }
                     }
+                } else {
+                    Log.i("response", "Error..")
                 }
-                Log.i("response",  request.body().toString())
-                //Log.d("yo", "Funciona")
-            }else{
-                Log.i("response", "No Funciona")
+            } catch (e: IOException) {
+                requireActivity().runOnUiThread {
+                    val dialog = AlertDialog.Builder(requireContext())
+                        .setTitle("Confirmacion")
+                        .setMessage("No se pudo conectar al servidor. Por favor, verifica tu conexión a internet e inténtalo de nuevo.")
+                        .setPositiveButton("Ok") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                    binding.progressBar.isVisible = true
+                }
+            } catch (e: HttpException) {
+                requireActivity().runOnUiThread {
+                    binding.tvErrorMessage.visibility = View.VISIBLE
+                    binding.tvError.visibility = View.VISIBLE
+                    binding.progressBar.isVisible = false
+
+                }
             }
         }
     }
 
-
     //Click en producto llevar a detalle
-    private fun navegateToDetailActivity(id: Int){
+    private fun navegateToDetailActivity(id: Int) {
         var intent = Intent(requireContext(), DetailDishActivity::class.java)
         intent.putExtra(DISH_ID, id)
         startActivity(intent)
     }
 
-
-
-
-
-   /* private fun initToolbar() {
-        //enableEdgeToEdge()
-//        val toolbar: androidx.appcompat.widget.Toolbar =  findViewById(R.id.toolbar_main)
-//        setSupportActionBar(toolbar)
-
-        val toolbar: androidx.appcompat.widget.Toolbar =  binding.
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-
-
-        //Variables globales
-        drawer = binding.drawerLayout  // findViewById(R.id.drawer_layout)
-        val toggle = ActionBarDrawerToggle(
-            activity, drawer, toolbar, R.string.bar_title,
-            R.string.navigation_drawer_close
-        )
-
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
-    }
-
-
-    //Function to inicialize the navigation view
-    private fun initNavigationView() {
-        var navigationView: NavigationView = binding.navView  //findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        var headerView: View =
-            LayoutInflater.from(context).inflate(R.layout.nav_header_main, navigationView, false)
-        navigationView.removeHeaderView(headerView)
-        navigationView.addHeaderView(headerView)
-
-        var tvUser = headerView.findViewById<TextView>(R.id.tvUser)
-        tvUser.text = useremail
-
-    }
-
-    // dar vida al menu
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_item_signOut -> {
-
-            }
-
-            R.id.nav_item_record -> {
-                histories()
-            }
-
-            R.id.nav_item_searchDish -> {
-                searchDish()
-            }
-
-            R.id.nav_item_Main ->{
-                val intent = Intent(requireContext(), DishAllActivity::class.java)
-                startActivity(intent)
-            }
-
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
-    }
-
-    private fun histories() {
-        val intent = Intent(requireContext(), TermsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun searchDish() {
-        val intent = Intent(requireContext(), DishListActivity::class.java)
-        startActivity(intent)
-    }*/
 
 }
 

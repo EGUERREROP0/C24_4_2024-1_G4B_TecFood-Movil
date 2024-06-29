@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
 
-    private const val BASE_URL = "http://192.168.0.102:4000/"
+   private const val BASE_URL = "http://192.168.0.102:4000/"
+//private const val BASE_URL = "http://192.168.208.219:4000/"
 
     val getRetrofit: Retrofit by lazy {
         Retrofit

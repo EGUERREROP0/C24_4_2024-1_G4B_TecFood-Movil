@@ -1,10 +1,15 @@
 package com.guerrero.erminio.tecfood.data.network
 
+import com.guerrero.erminio.tecfood.data.model.CartResponse
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
 import com.guerrero.erminio.tecfood.data.model.ResponseAllDish
+import com.guerrero.erminio.tecfood.ui.all.OrderRequest
 import com.guerrero.erminio.tecfood.ui.search.ResponseDish
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -23,4 +28,14 @@ interface ApiService {
 
     @GET("api/dish/{id}")
     suspend fun getDishDetail(@Path("id") dishId: Int): Response<DishInformationDetail>
+
+    @POST("/api/cart-dish")
+    suspend fun addProductToOrder(
+        @Header("Authorization") token: String,
+        @Body orderRequest: OrderRequest
+    ): Response<Unit>
+
+    @GET("api/cart-dish/user")
+    suspend fun getCart(@Header("Authorization") token: String): Response<CartResponse>
+
 }
