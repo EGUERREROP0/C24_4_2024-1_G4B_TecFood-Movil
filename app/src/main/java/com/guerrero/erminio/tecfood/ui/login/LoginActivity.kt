@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             showAlertDialogWithToastMessage("Aun no disponible, estamos trabajando para tener esta funcionalidad")
         }
 
-        binding.tvGoRegister.setOnClickListener{
+        binding.tvGoRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("TokenActivity", "Token: ${loginResponse.token}")
 
 
-                }  else {
+                } else {
                     if (response.code() == 401) {
                         showAlertDialogWithToastMessage("Credenciales incorrectas")
                     } else {
@@ -115,7 +115,6 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
     //Mesaje
     fun showAlertDialogWithToastMessage(message: String) {
         AlertDialog.Builder(this)

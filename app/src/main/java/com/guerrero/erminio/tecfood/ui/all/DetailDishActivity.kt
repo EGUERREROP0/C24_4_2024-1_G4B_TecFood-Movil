@@ -1,15 +1,13 @@
 package com.guerrero.erminio.tecfood.ui.all
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
+import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
 import com.guerrero.erminio.tecfood.data.network.RetrofitInstance
 import com.guerrero.erminio.tecfood.databinding.ActivityDetailDishBinding
@@ -21,9 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.Retrofit
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
 
 data class OrderRequest(
     val userId: Int,
@@ -82,14 +77,8 @@ class DetailDishActivity : AppCompatActivity() {
 
         binding.btnAddCart.setOnClickListener {
             val sharedPreferences = PreferenceHelper.defaultPrefs(this)
-            val token = sharedPreferences.getString("token", null)
-            if (token == null) {
-                return@setOnClickListener
-            }
+            val token = sharedPreferences.getString("token", null) ?: return@setOnClickListener
             val userId = getUserIdFromToken(token)
-            if (userId == null) {
-                return@setOnClickListener
-            }
             val quantity = 1
 
             CoroutineScope(Dispatchers.IO).launch {

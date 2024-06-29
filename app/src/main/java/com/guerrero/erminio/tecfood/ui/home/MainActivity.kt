@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.snackbar.Snackbar
 import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.databinding.ActivityMainBinding
 import com.guerrero.erminio.tecfood.ui.orders.OrderFragment

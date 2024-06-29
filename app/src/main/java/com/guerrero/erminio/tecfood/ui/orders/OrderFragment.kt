@@ -2,14 +2,12 @@ package com.guerrero.erminio.tecfood.ui.orders
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.data.model.Cart
 import com.guerrero.erminio.tecfood.data.model.CartResponse
 import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper

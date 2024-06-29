@@ -2,12 +2,7 @@ package com.guerrero.erminio.tecfood.ui.register
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.databinding.ActivityLoginBinding
 import com.guerrero.erminio.tecfood.databinding.ActivityRegisterBinding
 import com.guerrero.erminio.tecfood.ui.login.LoginActivity
 
