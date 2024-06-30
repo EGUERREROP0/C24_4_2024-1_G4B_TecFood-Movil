@@ -10,6 +10,7 @@ import com.guerrero.erminio.tecfood.ui.login.LoginActivity
 import com.guerrero.erminio.tecfood.databinding.FragmentPerfilBinding
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper.get
+import com.guerrero.erminio.tecfood.ui.History.HistoryActivity
 
 
 class PerfilFragment : Fragment() {
@@ -26,13 +27,20 @@ class PerfilFragment : Fragment() {
 
         signOut()
         loadUserProfile()
+        goToHistory()
         return binding.root
     }
-
 
     private fun signOut() {
         binding.lylySignOutAll.setOnClickListener {
             performLogout()
+        }
+    }
+
+    private fun goToHistory(){
+        binding.lylyHistoryDish.setOnClickListener{
+            val intent = Intent(requireContext(), HistoryActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -52,6 +60,7 @@ class PerfilFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
+
     private fun loadUserProfile() {
         val preferences = PreferenceHelper.defaultPrefs(requireContext())
         val userEmail = preferences["userEmail", ""]
@@ -61,6 +70,7 @@ class PerfilFragment : Fragment() {
         binding.tvUserEmail.text = userEmail
 
     }
+
 
 
     }

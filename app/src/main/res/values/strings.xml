@@ -46,6 +46,8 @@
     <string name="registrate">Registrate</string>
     <string name="total_price">Total: %s</string>
     <string name="sms_error">En mantenimiento.\nPor favor, inténtalo de nuevo en unos minutos.</string>
-    <string name="pedir">Pedir</string>
+    <string name="pedir">Hacer orden</string>
     <string name="cantidad">Cantidad</string>
+    <string name="history_dish">Historial de platos</string>
+    <string name="pay_continue">Continuar pago</string>
 </resources>

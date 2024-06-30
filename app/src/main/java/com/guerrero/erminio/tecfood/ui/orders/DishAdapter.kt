@@ -33,6 +33,8 @@ class DishAdapter(private var carts: List<Cart>) : RecyclerView.Adapter<DishAdap
         holder.priceTextView.text = totalDishPrice.toString()
         holder.quantityView.text = ": ${cart.quantity}"
         Picasso.get().load(dish.imgUrl).into(holder.dishImageView)
+
+
     }
 
     override fun getItemCount(): Int = carts.size

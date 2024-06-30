@@ -14,12 +14,12 @@
 
     <item
             android:id="@+id/searchFragment"
-            android:icon="@drawable/ic_orders"
+            android:icon="@drawable/ic_shop"
             android:title="Ordenes" />
 
     <item
             android:id="@+id/settingFragment"
-            android:icon="@drawable/ic_perfil"
+            android:icon="@drawable/account"
             android:title="Cuenta" />
 
 </menu>

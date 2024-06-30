@@ -64,9 +64,9 @@
 
                     <ImageView
                             android:id="@+id/ivLogoUser"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@mipmap/ic_logo01_round" />
+                            android:src="@drawable/perfil_person" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -158,7 +158,6 @@
             app:dividerColor="@color/divider"
             />
 
-    <!-- Add a new LinearLayout with id lylySignOutAll -->
     <LinearLayout
             android:id="@+id/lylySignOutAll"
             android:layout_width="match_parent"
@@ -189,8 +188,37 @@
                     />
 
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/lylyHistoryDish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/lylyDarkMode"
+            android:gravity="center_vertical">
+
+        <ImageView
+                android:src="@drawable/ic_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"/>
 
 
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/history_dish"
+                    />
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

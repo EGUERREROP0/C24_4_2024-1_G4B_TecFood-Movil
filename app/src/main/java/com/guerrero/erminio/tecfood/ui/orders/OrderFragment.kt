@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guerrero.erminio.tecfood.R
-import com.guerrero.erminio.tecfood.data.model.Cart
 import com.guerrero.erminio.tecfood.data.model.CartResponse
 import com.guerrero.erminio.tecfood.data.network.ApiService
 import com.guerrero.erminio.tecfood.data.network.PreferenceHelper
@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import org.json.JSONObject
 
 class OrderFragment : Fragment() {
     private var _binding: FragmentOrderBinding? = null
@@ -33,10 +34,8 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentOrderBinding.inflate(inflater, container, false)
-
-        binding.btnContinueToPay.setOnClickListener{
-            val intent = Intent(context, PaymentActivity::class.java)
-            startActivity(intent)
+        binding.btnContinueToPay.setOnClickListener {
+            continueToPay()
         }
 
         adapter = DishAdapter(emptyList())
@@ -68,14 +67,17 @@ class OrderFragment : Fragment() {
                 val cartResponse = response.body()
                 if (cartResponse != null) {
                     withContext(Dispatchers.Main) {
-                        adapter.updateCarts(cartResponse.cart)  // Actualiza el RecyclerView
+                        adapter.updateCarts(cartResponse.cart)
                         calculateAndDisplayTotal(cartResponse)
                     }
                 }
             } else {
                 withContext(Dispatchers.Main) {
                     // Maneja el caso en que la respuesta no es exitosa
-                    // ...
+                    val errorBody = response.errorBody()?.string()
+                    val jsonObject = JSONObject(errorBody)
+                    val errorMessage = jsonObject.getString("error")
+                    Log.e("OrderFragment", "Error: $errorMessage")
                 }
             }
         }
@@ -84,5 +86,42 @@ class OrderFragment : Fragment() {
     private fun calculateAndDisplayTotal(cartResponse: CartResponse) {
         val formattedTotal = String.format("%.2f", cartResponse.totalPayment)
         binding.floatTotal.text = getString(R.string.total_price, formattedTotal)
+    }
+
+    private fun continueToPay() {
+        val sharedPreferences = PreferenceHelper.defaultPrefs(requireContext())
+        val token = sharedPreferences.getString("token", null)
+        if (token == null) {
+            // Maneja el caso en que el token es nulo
+            return
+        }
+        val userId = getUserIdFromToken(token) ?: return
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val apiService = retrofit.create(ApiService::class.java)
+            val userIdRequest = ApiService.UserIdRequest(userId)
+            val response = apiService.createOrder("Bearer $token", userIdRequest)
+            if (response.isSuccessful) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Order created", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    val errorBody = response.errorBody()?.string()
+                    val jsonObject = JSONObject(errorBody)
+                    val errorMessage = jsonObject.getString("error")
+                    Log.e("OrderFragment", "Error: $errorMessage")
+                }
+            }
+        }
+    }
+
+    private fun getUserIdFromToken(token: String): Int? {
+        return 123
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -84,7 +84,9 @@ class AllFragment : Fragment() {
                             dialog.dismiss()
                         }
                         .show()
-                    binding.progressBar.isVisible = true
+                    binding.tvErrorMessage.visibility = View.VISIBLE
+                    binding.tvError.visibility = View.VISIBLE
+                    binding.progressBar.isVisible = false
                 }
             } catch (e: HttpException) {
                 requireActivity().runOnUiThread {

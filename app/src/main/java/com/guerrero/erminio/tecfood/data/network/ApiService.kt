@@ -3,10 +3,12 @@ package com.guerrero.erminio.tecfood.data.network
 import com.guerrero.erminio.tecfood.data.model.CartResponse
 import com.guerrero.erminio.tecfood.data.model.DishInformationDetail
 import com.guerrero.erminio.tecfood.data.model.ResponseAllDish
+import com.guerrero.erminio.tecfood.ui.History.OrderResponse
 import com.guerrero.erminio.tecfood.ui.all.OrderRequest
 import com.guerrero.erminio.tecfood.ui.search.ResponseDish
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -30,12 +32,26 @@ interface ApiService {
     suspend fun getDishDetail(@Path("id") dishId: Int): Response<DishInformationDetail>
 
     @POST("/api/cart-dish")
-    suspend fun addProductToOrder(
-        @Header("Authorization") token: String,
-        @Body orderRequest: OrderRequest
-    ): Response<Unit>
+    suspend fun addProductToOrder(@Header("Authorization") token: String, @Body orderRequest: OrderRequest ): Response<Unit>
 
     @GET("api/cart-dish/user")
     suspend fun getCart(@Header("Authorization") token: String): Response<CartResponse>
 
+
+    @POST("/api/order-dish")
+   suspend fun createOrder(@Header("Authorization") token: String, @Body userIdRequest: UserIdRequest): Response<Unit>
+
+    data class UserIdRequest(val userId: Int)
+
+    @GET("api/order-dish/user")
+    suspend fun getUserOrders(
+        @Header("Authorization") token: String,
+        @Query("status") status: String
+    ): Response<OrderResponse>
+
+    @DELETE("api/cart-dish/{dishId}")
+    suspend fun deleteCartItem(
+        @Header("Authorization") token: String,
+        @Path("dishId") dishId: Int
+    ): Response<Unit>
 }
