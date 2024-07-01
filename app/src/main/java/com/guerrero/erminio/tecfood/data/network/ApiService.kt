@@ -46,7 +46,7 @@ interface ApiService {
     @GET("api/order-dish/user")
     suspend fun getUserOrders(
         @Header("Authorization") token: String,
-        @Query("status") status: String
+        @Query("status") status: List<String>
     ): Response<OrderResponse>
 
     @DELETE("api/cart-dish/{dishId}")

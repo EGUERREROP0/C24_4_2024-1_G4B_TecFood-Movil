@@ -10,13 +10,15 @@ import com.guerrero.erminio.tecfood.R
 import com.guerrero.erminio.tecfood.data.model.Cart
 import com.squareup.picasso.Picasso
 
-class DishAdapter(private var carts: List<Cart>) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
+class DishAdapter(
+    private var carts: List<Cart>) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
 
     class DishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.tvOrderName)
         val priceTextView: TextView = itemView.findViewById(R.id.tvOrderPrice)
         val dishImageView: ImageView = itemView.findViewById(R.id.ivOrderImage)
         val quantityView: TextView = itemView.findViewById(R.id.tvOrderQuantity)
+        val deleteButton: ImageView = itemView.findViewById(R.id.icDelete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
@@ -33,7 +35,6 @@ class DishAdapter(private var carts: List<Cart>) : RecyclerView.Adapter<DishAdap
         holder.priceTextView.text = totalDishPrice.toString()
         holder.quantityView.text = ": ${cart.quantity}"
         Picasso.get().load(dish.imgUrl).into(holder.dishImageView)
-
 
     }
 

@@ -40,7 +40,6 @@ class HistoryActivity : AppCompatActivity() {
             .baseUrl("http://192.168.0.102:4000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         getUserOrders()
     }
 
@@ -54,7 +53,7 @@ class HistoryActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val apiService = retrofit.create(ApiService::class.java)
-            val response = apiService.getUserOrders("Bearer $token", "PENDING")
+            val response = apiService.getUserOrders("Bearer $token", listOf("PENDING", "FAILED", "COMPLETED"))
             if (response.isSuccessful) {
                 val orderResponse = response.body()
                 if (orderResponse != null) {
